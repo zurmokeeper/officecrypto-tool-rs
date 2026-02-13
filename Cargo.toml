@@ -1,0 +1,52 @@
+[package]
+name = "officecrypto-tool"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <you@example.com>"]
+description = "A Rust library for encrypting and decrypting Office files (Excel, Word, PowerPoint)"
+license = "MIT"
+repository = "https://github.com/yourusername/officecrypto-tool-rs"
+keywords = ["office", "encryption", "excel", "word", "powerpoint"]
+categories = ["cryptography", "parser-implementations"]
+
+[dependencies]
+# Cryptography
+aes = "0.8"
+cbc = { version = "0.1", features = ["std"] }
+ecb = "0.1"
+md-5 = "0.10"
+sha1 = "0.10"
+sha2 = "0.10"
+hmac = "0.12"
+rc4 = "0.1"
+cipher = "0.4"
+
+# CFB format (Compound File Binary)
+cfb = "0.9"
+
+# XML parsing
+quick-xml = "0.31"
+serde = { version = "1.0", features = ["derive"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Encoding
+base64 = "0.21"
+encoding_rs = "0.8"
+
+# Random number generation
+rand = "0.8"
+
+# ZIP validation (for verifying decrypted OOXML) - pin version
+zip = { version = "0.6", default-features = false, features = ["deflate"] }
+
+[dev-dependencies]
+hex-literal = "0.4"
+hex = "0.4"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
